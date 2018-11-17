@@ -1,3 +1,3 @@
 export * from './compiler';
-export { build } from './build';
+export { build } from './src/build';
 export { run } from './run';

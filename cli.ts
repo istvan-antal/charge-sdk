@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { build } from './build';
+import { build } from './src/build';
 import { run } from './run';
 import { create } from './create';
 import { test } from './src/test';

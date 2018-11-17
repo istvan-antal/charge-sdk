@@ -1,4 +1,4 @@
-import { createCompiler } from './compiler';
+import { createCompiler } from '../compiler';
 const chalk = require('chalk');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 
