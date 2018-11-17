@@ -7,8 +7,8 @@
   "scripts": {
     "test": "ts-node ./src/cli.ts test",
     "build": "tsc --declaration",
-    "release": "npm version patch -m \"[Release] %s\"; npm publish; git push; git push --tags",
-    "prepublish": "npm run build"
+    "release": "ts-node ./src/release.ts",
+    "prepare": "npm run build"
   },
   "engines": {
     "node": "10.13.0",
