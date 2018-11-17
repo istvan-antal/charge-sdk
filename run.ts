@@ -1,4 +1,4 @@
-import { createWebpackConfig } from './compiler';
+import { createWebpackConfig } from './src/compiler';
 const chalk = require('chalk');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
