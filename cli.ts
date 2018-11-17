@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { build } from './src/build';
-import { run } from './run';
+import { run } from './src/run';
 import { create } from './src/create';
 import { test } from './src/test';
 
