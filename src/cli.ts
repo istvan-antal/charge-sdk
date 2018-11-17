@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { build } from './src/build';
-import { run } from './src/run';
-import { create } from './src/create';
-import { test } from './src/test';
+import { build } from './build';
+import { run } from './run';
+import { create } from './create';
+import { test } from './test';
 
 // tslint:disable-next-line:no-magic-numbers
 switch (process.argv[2]) {

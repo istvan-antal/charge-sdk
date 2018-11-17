@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "ts-node ./cli.ts test",
+    "test": "ts-node ./src/cli.ts test",
     "build": "tsc --declaration",
     "release": "npm version patch -m \"[Release] %s\"; npm publish; git push; git push --tags",
     "prepublish": "npm run build"
