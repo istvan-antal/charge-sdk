@@ -15,9 +15,11 @@ export const run = () => {
         hmr: true, development: true,
     });
     const devServer = new WebpackDevServer(webpack(config), config.devServer || { hot: true });
+    // tslint:disable-next-line:no-any
     devServer.listen(port, host, (err: any) => {
         if (err) {
-            return console.log(err);
+            console.log(err);
+            return;
         }
         /* if (isInteractive) {
             clearConsole();
@@ -28,8 +30,9 @@ export const run = () => {
         // openBrowser(urls.localUrlForBrowser);
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
-        process.on(sig as any, function () {
+    ['SIGINT', 'SIGTERM'].forEach(sig => {
+        // tslint:disable-next-line:no-any
+        process.on(sig as any, () => {
             devServer.close();
             process.exit();
         });

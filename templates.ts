@@ -95,7 +95,7 @@ export const counter = (state = 0, action: CounterActions) => {
     case 'decrement':
         return state - action.data;
     default:
-        return state;    
+        return state;
     }
 }
 */

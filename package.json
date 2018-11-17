@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "npm audit",
+    "test": "ts-node ./cli.ts test",
     "build": "tsc --declaration",
     "release": "npm version patch -m \"[Release] %s\"; npm publish; git push; git push --tags",
     "prepublish": "npm run build"
@@ -32,8 +32,6 @@
   },
   "homepage": "https://github.com/istvan-antal/react-ts-runtime#readme",
   "dependencies": {
-    "@types/inquirer": "0.0.43",
-    "@types/node": "^10.12.2",
     "autoprefixer": "^9.3.1",
     "awesome-typescript-loader": "^5.2.1",
     "cpp-wasm-loader": "^0.9.0",
@@ -56,12 +54,16 @@
     "style-loader": "^0.23.1",
     "ts-jest": "^23.10.4",
     "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
     "tslint-loader": "^3.5.4",
     "tslint-react": "^3.6.0",
     "typescript": "^3.1.6",
     "url-loader": "^1.1.2",
     "webpack": "^4.24.0",
     "webpack-dev-server": "^3.1.10"
+  },
+  "devDependencies": {
+    "@types/inquirer": "0.0.43",
+    "@types/node": "^10.12.2",
+    "tslint": "^5.11.0"
   }
 }

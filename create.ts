@@ -15,7 +15,8 @@ export const create = () => {
         name: 'name',
         type: 'input',
         validate: value => !!value,
-    }).then(result => {
+    }).then(async result => {
+        // tslint:disable-next-line:no-any
         name = (result as any).name as string;
 
         return prompt({
@@ -24,10 +25,12 @@ export const create = () => {
             choices: [
                 {
                     value: 'redux',
-                    name: 'Redux'
-                }
+                    name: 'Redux',
+                },
             ],
+        // tslint:disable-next-line:no-shadowed-variable
         }).then(result => {
+            // tslint:disable-next-line:no-any
             features = (result as any).features as string[];
         });
     }).then(() => {
@@ -45,6 +48,7 @@ export const create = () => {
         packageJson.main = './src/index.tsx';
         packageJson.scripts.start = 'charge-sdk run';
         packageJson.scripts.build = 'charge-sdk build';
+        // tslint:disable-next-line:no-null-keyword no-magic-numbers
         writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 4));
 
         spawnSync('npm', ['install', 'charge-sdk', 'react', 'react-dom', '@types/react', '@types/react-dom'], {
@@ -73,7 +77,9 @@ export const create = () => {
             writeFileSync(resolve(projectDir, 'src/store/index.tsx'), storeIndexTsx);
         }
 
-        console.log('Project created, run the following command to get started!')
-        console.log(`cd ${name}; npm start`)
+        console.log('Project created, run the following command to get started!');
+        console.log(`cd ${name}; npm start`);
+    }).catch(error => {
+        throw error;
     });
 };

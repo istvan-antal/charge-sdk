@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 
 export const build = () => {
+    // tslint:disable-next-line:no-any
     createCompiler().run((err: any, stats: any) => {
         if (err) {
             throw err;
@@ -16,9 +17,7 @@ export const build = () => {
             console.log(chalk.yellow('Compiled with warnings.\n'));
             console.log(messages.warnings.join('\n\n'));
             console.log(
-                '\nSearch for the ' +
-                chalk.underline(chalk.yellow('keywords')) +
-                ' to learn more about each warning.'
+                `\nSearch for the ${chalk.underline(chalk.yellow('keywords'))} to learn more about each warning.`,
             );
         } else {
             console.log(chalk.green('Compiled successfully.\n'));

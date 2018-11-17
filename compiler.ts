@@ -126,12 +126,13 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
     }
 
     const projectHasTsConfig = existsSync(
-        resolve(join(process.cwd(), 'tsconfig.json'))
+        resolve(join(process.cwd(), 'tsconfig.json')),
     );
 
     const config = ({
         mode: development ? 'development' : 'production',
         devtool: !development ? 'source-map' : 'cheap-module-source-map',
+        // tslint:disable-next-line:no-any
         entry: undefined as any,
         output: {
             path: resolve(process.cwd(), './dist'),
@@ -151,13 +152,13 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                 // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
                 {
                     test: /\.tsx?$/,
-                    loader: "awesome-typescript-loader",
+                    loader: 'awesome-typescript-loader',
                     options: projectHasTsConfig ? undefined : {
                         configFileName: require.resolve('charge-sdk/tsconfig.json'),
                     },
                 },
                 // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-                { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+                { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
                 {
                     test: [
                         /\.bmp$/,
@@ -177,7 +178,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                     },
                 },
                 createPostCssLoader(development),
-            ]
+            ],
         },
         resolve: {
             extensions: ['.js', '.json', '.jsx', '.ts', '.tsx', '.c', '.cpp'],
@@ -198,30 +199,35 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
             // different modes (for example building only)
         },
         externals: [
+            // tslint:disable-next-line:only-arrow-functions
             (function () {
-                var IGNORES = [
-                    'electron'
+                const IGNORES = [
+                    'electron',
                 ];
-                return function (context: any, request: any, callback: any) {
+                // tslint:disable-next-line:no-any
+                return (context: any, request: any, callback: any) => {
                     if (IGNORES.indexOf(request) >= 0) {
-                        return callback(null, "require('" + request + "')");
+                        // tslint:disable-next-line:no-null-keyword prefer-template
+                        return callback(null, `require('${request}')`);
                     }
                     return callback();
                 };
-            })()
-        ]
+            })(),
+        ],
     });
 
     return config;
 };
 
+// tslint:disable-next-line:cyclomatic-complexity
 export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
     const packageJson = require(resolve(process.cwd(), './package.json'));
 
     const appEntryPoint = packageJson.main || './app/index';
     const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
     const reactTsRuntimeConfig = packageJson.reactTsRuntime || {};
-    const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware && require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware)).default;
+    const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware &&
+        require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware)).default;
 
     if (reactTsRuntimeConfig.html === undefined) {
         reactTsRuntimeConfig.html = true;
@@ -255,6 +261,6 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
     return config;
 };
 
-export const createCompiler = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
-    return webpack(createWebpackConfig({ hmr, development }));
-};
+export const createCompiler = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) =>
+    // tslint:disable-next-line:max-file-line-count
+    webpack(createWebpackConfig({ hmr, development }));
