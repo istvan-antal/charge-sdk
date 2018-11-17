@@ -6,7 +6,7 @@ import {
     appTsxTemplate, reduxIndexTsxTemplate, indexTsxTemplate,
     indexHtmlTemplate, actionsIndexTsx, reducersIndexTsx,
     storeIndexTsx,
-} from './src/templates';
+} from './templates';
 
 export const create = () => {
     let name: string;

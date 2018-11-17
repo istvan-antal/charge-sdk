@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { build } from './src/build';
 import { run } from './run';
-import { create } from './create';
+import { create } from './src/create';
 import { test } from './src/test';
 
 // tslint:disable-next-line:no-magic-numbers
