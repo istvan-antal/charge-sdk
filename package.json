@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/istvan-antal/react-ts-runtime.git"
+    "url": "git+https://github.com/istvan-antal/charge-sdk.git"
   },
   "keywords": [
     "react",
@@ -28,9 +28,9 @@
   "author": "István Antal <i@istvan.xyz>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/istvan-antal/react-ts-runtime/issues"
+    "url": "https://github.com/istvan-antal/charge-sdk/issues"
   },
-  "homepage": "https://github.com/istvan-antal/react-ts-runtime#readme",
+  "homepage": "https://github.com/istvan-antal/charge-sdk#readme",
   "dependencies": {
     "@types/inquirer": "0.0.43",
     "@types/node": "^10.12.2",
