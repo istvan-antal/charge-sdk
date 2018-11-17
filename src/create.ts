@@ -22,7 +22,12 @@ export const create = () => {
         return prompt({
             name: 'features',
             type: 'checkbox',
+            default: ['tslint'],
             choices: [
+                {
+                    value: 'tslint',
+                    name: 'TSLint',
+                },
                 {
                     value: 'redux',
                     name: 'Redux',
@@ -36,6 +41,7 @@ export const create = () => {
     }).then(() => {
         const projectDir = resolve(process.cwd(), name);
         const hasRedux = features.includes('redux');
+        const hasTslint = features.includes('tslint');
 
         mkdirSync(name);
         spawnSync('npm',['init', '-y'], {
@@ -48,6 +54,11 @@ export const create = () => {
         packageJson.main = './src/index.tsx';
         packageJson.scripts.start = 'charge-sdk run';
         packageJson.scripts.build = 'charge-sdk build';
+
+        if (hasTslint) {
+            packageJson.scripts = 'charge-sdk test';
+        }
+
         // tslint:disable-next-line:no-null-keyword no-magic-numbers
         writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 4));
 
@@ -75,6 +86,13 @@ export const create = () => {
             writeFileSync(resolve(projectDir, 'src/actions/index.tsx'), actionsIndexTsx);
             writeFileSync(resolve(projectDir, 'src/reducers/index.tsx'), reducersIndexTsx);
             writeFileSync(resolve(projectDir, 'src/store/index.tsx'), storeIndexTsx);
+        }
+
+        if (hasTslint) {
+            writeFileSync(
+                resolve(projectDir, 'tslint.json'),
+                readFileSync(resolve(__dirname, '..', 'tslint.json').toString()),
+            );
         }
 
         console.log('Project created, run the following command to get started!');
