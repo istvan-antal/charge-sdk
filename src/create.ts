@@ -47,6 +47,7 @@ export const create = () => {
         spawnSync('npm',['init', '-y'], {
             cwd: projectDir,
             stdio: 'inherit',
+            shell: true,
         });
 
         const packageJsonPath = resolve(projectDir, 'package.json');
@@ -65,12 +66,14 @@ export const create = () => {
         spawnSync('npm', ['install', 'charge-sdk', 'react', 'react-dom', '@types/react', '@types/react-dom'], {
             cwd: projectDir,
             stdio: 'inherit',
+            shell: true,
         });
 
         if (hasRedux) {
             spawnSync('npm', ['install', 'redux', 'react-redux', '@types/react-redux'], {
                 cwd: projectDir,
                 stdio: 'inherit',
+                shell: true,
             });
         }
 
