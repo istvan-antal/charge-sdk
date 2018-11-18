@@ -57,7 +57,7 @@ export const create = () => {
         packageJson.scripts.build = 'charge-sdk build';
 
         if (hasTslint) {
-            packageJson.scripts = 'charge-sdk test';
+            packageJson.scripts.test = 'charge-sdk test';
         }
 
         // tslint:disable-next-line:no-null-keyword no-magic-numbers
