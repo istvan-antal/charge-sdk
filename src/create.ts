@@ -101,6 +101,7 @@ export const create = () => {
         console.log('Project created, run the following command to get started!');
         console.log(`cd ${name}; npm start`);
     }).catch(error => {
+        console.error(error);
         throw error;
     });
 };
