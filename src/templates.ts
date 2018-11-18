@@ -12,7 +12,7 @@ export default class App extends React.Component {
 
 export const indexTsxTemplate = `import * as React from 'react';
 import { render } from 'react-dom';
-import App from './App.tsx';
+import App from './App';
 
 render(<App />, document.getElementById('app'));`;
 
