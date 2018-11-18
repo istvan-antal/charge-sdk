@@ -119,3 +119,61 @@ export type State = ReturnType<typeof reducers>;
 const store = createStore(reducers);
 
 export default store;`;
+
+export const exampleTest = `test('example  test', () => {
+    expect(true).toBe(true);
+});`;
+
+export const jestConfig = {
+    coverageThreshold: {
+        global: {
+            branches: 100,
+            functions: 100,
+            lines: 100,
+            statements: 100,
+        },
+    },
+    collectCoverage: true,
+    collectCoverageFrom: [
+        'src/**/*.{js,jsx,ts,tsx}',
+    ],
+    coverageDirectory: 'report',
+    coverageReporters: [
+        'json',
+        'lcov',
+        'text',
+        'cobertura',
+    ],
+    coveragePathIgnorePatterns: [
+        '/src/index.ts',
+        '/src/actions/index.ts',
+        '/src/reducers/index.ts',
+        '/src/store/index.ts',
+        '/src/App.ts',
+    ],
+    moduleFileExtensions: [
+        'ts',
+        'tsx',
+        'js',
+        'jsx',
+        'json',
+    ],
+    transform: {
+        '.(ts|tsx)': 'ts-jest',
+    },
+    testMatch: [
+        '<rootDir>/src/**/__tests__/**/*.js?(x)',
+        '<rootDir>/src/**/?(*.)(spec|test).js?(x)',
+        '<rootDir>/src/**/__tests__/**/*.ts?(x)',
+        '<rootDir>/src/**/?(*.)(spec|test).ts?(x)',
+    ],
+    testEnvironment: 'node',
+    transformIgnorePatterns: [
+        '[/\\\\]node_modules[/\\\\](?!deepmerge).+\\.(js|jsx|ts|tsx)$',
+    ],
+    globals: {
+        'ts-jest': {
+            tsConfig: './tsconfig.json',
+        },
+    },
+};

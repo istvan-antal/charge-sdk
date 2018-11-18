@@ -6,6 +6,8 @@ import {
     appTsxTemplate, reduxIndexTsxTemplate, indexTsxTemplate,
     indexHtmlTemplate, actionsIndexTsx, reducersIndexTsx,
     storeIndexTsx,
+    jestConfig,
+    exampleTest,
 } from './templates';
 
 export const create = () => {
@@ -29,6 +31,10 @@ export const create = () => {
                     name: 'TSLint',
                 },
                 {
+                    value: 'jest',
+                    name: 'Jest',
+                },
+                {
                     value: 'redux',
                     name: 'Redux',
                 },
@@ -38,10 +44,12 @@ export const create = () => {
             // tslint:disable-next-line:no-any
             features = (result as any).features as string[];
         });
+    // tslint:disable-next-line:cyclomatic-complexity
     }).then(() => {
         const projectDir = resolve(process.cwd(), name);
         const hasRedux = features.includes('redux');
         const hasTslint = features.includes('tslint');
+        const hasJest = features.includes('jest');
 
         mkdirSync(name);
         spawnSync('npm',['init', '-y'], {
@@ -58,6 +66,10 @@ export const create = () => {
 
         if (hasTslint) {
             packageJson.scripts.test = 'charge-sdk test';
+        }
+
+        if (hasJest) {
+            packageJson.jest = jestConfig;
         }
 
         // tslint:disable-next-line:no-null-keyword no-magic-numbers
@@ -77,18 +89,35 @@ export const create = () => {
             });
         }
 
+        if (hasJest) {
+            spawnSync('npm', ['install', '@types/jest'], {
+                cwd: projectDir,
+                stdio: 'inherit',
+                shell: true,
+            });
+        }
+
+        writeFileSync(
+            resolve(projectDir, 'tsconfig.json'),
+            readFileSync(resolve(__dirname, '..', 'tsconfig.json').toString()),
+        );
+
         mkdirSync(resolve(projectDir, 'src'));
-        writeFileSync(resolve(projectDir, 'src/App.tsx'), appTsxTemplate);
-        writeFileSync(resolve(projectDir, 'src/index.tsx'), hasRedux ? reduxIndexTsxTemplate : indexTsxTemplate);
-        writeFileSync(resolve(projectDir, 'src/index.html'), indexHtmlTemplate);
+        writeFileSync(resolve(projectDir, 'src', 'App.tsx'), appTsxTemplate);
+        writeFileSync(resolve(projectDir, 'src', 'index.tsx'), hasRedux ? reduxIndexTsxTemplate : indexTsxTemplate);
+        writeFileSync(resolve(projectDir, 'src', 'index.html'), indexHtmlTemplate);
+
+        if (hasJest) {
+            writeFileSync(resolve(projectDir, 'src', 'example.test.ts'), exampleTest);
+        }
 
         if (hasRedux) {
-            mkdirSync(resolve(projectDir, 'src/actions'));
-            mkdirSync(resolve(projectDir, 'src/reducers'));
-            mkdirSync(resolve(projectDir, 'src/store'));
-            writeFileSync(resolve(projectDir, 'src/actions/index.tsx'), actionsIndexTsx);
-            writeFileSync(resolve(projectDir, 'src/reducers/index.tsx'), reducersIndexTsx);
-            writeFileSync(resolve(projectDir, 'src/store/index.tsx'), storeIndexTsx);
+            mkdirSync(resolve(projectDir, 'src', 'actions'));
+            mkdirSync(resolve(projectDir, 'src', 'reducers'));
+            mkdirSync(resolve(projectDir, 'src', 'store'));
+            writeFileSync(resolve(projectDir, 'src', 'actions', 'index.tsx'), actionsIndexTsx);
+            writeFileSync(resolve(projectDir, 'src', 'reducers', 'index.tsx'), reducersIndexTsx);
+            writeFileSync(resolve(projectDir, 'src', 'store', 'index.tsx'), storeIndexTsx);
         }
 
         if (hasTslint) {

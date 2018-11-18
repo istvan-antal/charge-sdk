@@ -33,6 +33,7 @@
   "homepage": "https://github.com/istvan-antal/charge-sdk#readme",
   "dependencies": {
     "@types/inquirer": "0.0.43",
+    "@types/jest": "^23.3.9",
     "@types/node": "^10.12.2",
     "autoprefixer": "^9.3.1",
     "awesome-typescript-loader": "^5.2.1",
