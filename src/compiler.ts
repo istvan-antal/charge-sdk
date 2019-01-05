@@ -202,7 +202,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
             // tslint:disable-next-line:only-arrow-functions
             (function () {
                 const IGNORES = [
-                    'electron',
+                    'electron', 'child_process', 'fs',
                 ];
                 // tslint:disable-next-line:no-any
                 return (context: any, request: any, callback: any) => {
