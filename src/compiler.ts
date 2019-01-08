@@ -7,6 +7,8 @@ const postcssSimpleVars = require('postcss-simple-vars');
 const postcssImport = require('postcss-import');
 const postcssNested = require('postcss-nested');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const readCache = require('read-cache');
+const load = (filename: string) => readCache(filename, 'utf-8');
 
 const postCssOptions = {
     // Necessary for external CSS imports to work
@@ -14,7 +16,16 @@ const postCssOptions = {
     // ident: 'postcss',
     sourceMap: true,
     plugins: () => [
-        postcssImport(),
+        postcssImport({
+            load: (filename: string, importOptions: {}) =>
+                load(filename).then((content: string) => {
+                    if (filename.endsWith('.json')) {
+                        return (Object.entries(JSON.parse(content)).map(([name, value]) =>
+                            `$${name}: ${value};`).join('\n'));
+                    }
+                    return content;
+                }),
+        }),
         // require('postcss-flexbugs-fixes'),
         postcssSimpleVars(),
         postcssNested(),
