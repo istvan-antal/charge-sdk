@@ -11,8 +11,8 @@
     "prepare": "npm run build"
   },
   "engines": {
-    "node": "10.13.0",
-    "npm": "6.4.1"
+    "node": "11.9.0",
+    "npm": "6.7.0"
   },
   "bin": {
     "charge-sdk": "./dist/cli.js"
@@ -33,18 +33,18 @@
   "homepage": "https://github.com/istvan-antal/charge-sdk#readme",
   "dependencies": {
     "@types/inquirer": "0.0.43",
-    "@types/jest": "^23.3.11",
-    "@types/node": "^10.12.18",
-    "autoprefixer": "^9.4.4",
+    "@types/jest": "^23.3.14",
+    "@types/node": "^10.12.23",
+    "autoprefixer": "^9.4.7",
     "awesome-typescript-loader": "^5.2.1",
     "cpp-wasm-loader": "^0.9.0",
     "css-loader": "^1.0.1",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
-    "inquirer": "^6.2.1",
+    "inquirer": "^6.2.2",
     "jest": "^23.6.0",
     "mini-css-extract-plugin": "^0.4.5",
-    "postcss": "^7.0.7",
+    "postcss": "^7.0.14",
     "postcss-import": "^12.0.1",
     "postcss-initial": "^3.0.0",
     "postcss-loader": "^3.0.0",
@@ -57,12 +57,12 @@
     "style-loader": "^0.23.1",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
-    "tslint": "^5.12.0",
+    "tslint": "^5.12.1",
     "tslint-loader": "^3.5.4",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.2.2",
+    "typescript": "^3.3.1",
     "url-loader": "^1.1.2",
-    "webpack": "^4.28.3",
+    "webpack": "^4.29.3",
     "webpack-dev-server": "^3.1.14"
   }
 }
