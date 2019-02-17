@@ -33,9 +33,9 @@
   "homepage": "https://github.com/istvan-antal/charge-sdk#readme",
   "dependencies": {
     "@types/inquirer": "0.0.43",
-    "@types/jest": "^24.0.3",
+    "@types/jest": "^24.0.5",
     "@types/jest-diff": "^20.0.1",
-    "@types/node": "^11.9.3",
+    "@types/node": "^11.9.4",
     "autoprefixer": "^9.4.7",
     "awesome-typescript-loader": "^5.2.1",
     "cpp-wasm-loader": "^0.9.0",
@@ -63,7 +63,7 @@
     "tslint-react": "^3.6.0",
     "typescript": "^3.3.1",
     "url-loader": "^1.1.2",
-    "webpack": "^4.29.3",
+    "webpack": "^4.29.4",
     "webpack-dev-server": "^3.1.14"
   }
 }
