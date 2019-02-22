@@ -176,6 +176,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                         /\.gif$/,
                         /\.jpe?g$/,
                         /\.png$/,
+                        /\.webp$/,
                         /\.ttf$/,
                         /\.eot$/,
                         /\.woff$/,
