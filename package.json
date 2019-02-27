@@ -5,9 +5,9 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "ts-node ./src/cli.ts test",
+    "test": "babel-node --extensions \".ts\" ./src/cli.ts test",
     "build": "tsc --declaration",
-    "release": "ts-node ./src/release.ts",
+    "release": "babel-node --extensions \".ts\" ./src/release.ts",
     "prepare": "npm run build"
   },
   "engines": {
@@ -31,7 +31,33 @@
     "url": "https://github.com/istvan-antal/charge-sdk/issues"
   },
   "homepage": "https://github.com/istvan-antal/charge-sdk#readme",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-typescript"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-export-default-from",
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": false
+        }
+      ],
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-modules-commonjs"
+    ]
+  },
   "dependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
+    "@babel/plugin-transform-regenerator": "^7.3.4",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-typescript": "^7.3.3",
     "@types/inquirer": "0.0.43",
     "@types/jest": "^24.0.6",
     "@types/jest-diff": "^20.0.1",

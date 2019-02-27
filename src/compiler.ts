@@ -65,34 +65,6 @@ const createPostCssLoader = (development?: boolean) => {
                     options: postCssOptions,
                 },
             ],
-            /* loader: ExtractTextPlugin.extract(
-                Object.assign({
-                    fallback: {
-                        loader: require.resolve('style-loader'),
-                        options: {
-                            hmr: false,
-                        },
-                    },
-                    use: [
-                        {
-                            loader: require.resolve('css-loader'),
-                            options: {
-                                importLoaders: 1,
-                                minimize: true,
-                                sourceMap: true,
-                            },
-                        },
-                        {
-                            loader: require.resolve('postcss-loader'),
-                            options: postCssOptions,
-                        },
-                    ],
-                },
-                    extractTextPluginOptions,
-                ),
-            ),
-            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
-            */
         };
     }
 
@@ -163,10 +135,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                 // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
                 {
                     test: /\.tsx?$/,
-                    loader: 'awesome-typescript-loader',
-                    options: projectHasTsConfig ? undefined : {
-                        configFileName: require.resolve('charge-sdk/tsconfig.json'),
-                    },
+                    loader: 'babel-loader',
                 },
                 // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
                 { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
