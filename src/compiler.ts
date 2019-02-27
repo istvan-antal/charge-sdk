@@ -225,9 +225,11 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
     config.entry = hmr ?
         [
             require.resolve('react-dev-utils/webpackHotDevClient'),
+            '@babel/polyfill',
             appEntryPoint,
         ] :
         [
+            '@babel/polyfill',
             appEntryPoint,
         ];
 
