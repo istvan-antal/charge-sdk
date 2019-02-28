@@ -34,28 +34,31 @@
   "babel": {
     "presets": [
       "@babel/preset-env",
+      "@babel/preset-react",
       "@babel/preset-typescript"
     ],
     "plugins": [
+      "@babel/plugin-proposal-object-rest-spread",
       "@babel/plugin-proposal-export-default-from",
+      "@babel/plugin-transform-react-jsx",
       [
         "@babel/plugin-proposal-class-properties",
         {
           "loose": false
         }
       ],
-      "@babel/plugin-transform-regenerator",
-      "@babel/plugin-transform-modules-commonjs"
+      "@babel/plugin-transform-modules-commonjs",
+      "@babel/plugin-syntax-dynamic-import"
     ]
   },
   "dependencies": {
     "@babel/core": "^7.3.3",
     "@babel/node": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/plugin-proposal-export-default-from": "^7.2.0",
-    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
-    "@babel/plugin-transform-regenerator": "^7.3.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/polyfill": "^7.2.5",
+    "@babel/preset-react": "^7.0.0",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-typescript": "^7.3.3",
     "@types/inquirer": "0.0.43",
