@@ -1,13 +1,15 @@
+import '../types.d.ts';
 import { resolve, join, dirname } from 'path';
 import { existsSync } from 'fs';
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const postcssSimpleVars = require('postcss-simple-vars');
-const postcssImport = require('postcss-import');
-const postcssNested = require('postcss-nested');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const readCache = require('read-cache');
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import autoprefixer from 'autoprefixer';
+import postcssSimpleVars from 'postcss-simple-vars';
+import postcssImport from 'postcss-import';
+import postcssNested from 'postcss-nested';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import readCache from 'read-cache';
+
 const load = (filename: string) => readCache(filename, 'utf-8');
 
 const postCssOptions = {
@@ -17,17 +19,16 @@ const postCssOptions = {
     sourceMap: true,
     plugins: () => [
         postcssImport({
-            load: (filename: string, importOptions: {}) =>
-                load(filename).then((content: string) => {
-                    if (filename.endsWith('.json')) {
-                        return (Object.entries(JSON.parse(content)).map(([name, value]) =>
-                            `$${name}: ${value};`).join('\n'));
-                    }
-                    return content;
-                }),
+            load: (filename: string, importOptions: {}) => load(filename).then((content: string) => {
+                if (filename.endsWith('.json')) {
+                    return (Object.entries(JSON.parse(content)).map(([name, value]) => (
+                        `$${name}: ${value};`)).join('\n'));
+                }
+                return content;
+            }),
         }),
         // require('postcss-flexbugs-fixes'),
-        postcssSimpleVars(),
+        (postcssSimpleVars as any)(),
         postcssNested(),
         autoprefixer({
             browsers: [
@@ -87,6 +88,7 @@ const createPostCssLoader = (development?: boolean) => {
 };
 
 export const createBaseWebpackConfig = ({ development }: { development?: boolean } = {}) => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
     const packageJson = require(resolve(process.cwd(), './package.json'));
     const version = process.env.VERSION || packageJson.version;
 
@@ -99,7 +101,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
             new ExtractTextPlugin({
                 filename: `style-${version}.css`,
             }),
-        );*/
+        ); */
         plugins.push(new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
@@ -180,7 +182,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
             // different modes (for example building only)
         },
         externals: [
-            // tslint:disable-next-line:only-arrow-functions
+            /* eslint-disable-next-line wrap-iife, func-names */
             (function () {
                 const IGNORES = [
                     'electron', 'child_process', 'fs',
@@ -202,12 +204,14 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
 
 // tslint:disable-next-line:cyclomatic-complexity
 export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
     const packageJson = require(resolve(process.cwd(), './package.json'));
 
     const appEntryPoint = packageJson.main || './app/index';
     const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
     const reactTsRuntimeConfig = packageJson.reactTsRuntime || {};
     const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware &&
+    /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
         require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware)).default;
 
     if (reactTsRuntimeConfig.html === undefined) {
@@ -244,6 +248,7 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
     return config;
 };
 
-export const createCompiler = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) =>
+export const createCompiler = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => (
     // tslint:disable-next-line:max-file-line-count
-    webpack(createWebpackConfig({ hmr, development }));
+    webpack(createWebpackConfig({ hmr, development }))
+);

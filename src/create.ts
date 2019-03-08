@@ -10,6 +10,7 @@ import {
     exampleTest,
 } from './templates';
 
+/* eslint-disable import/prefer-default-export */
 export const create = () => {
     let name: string;
     let features: string[];
@@ -40,9 +41,9 @@ export const create = () => {
                 },
             ],
         // tslint:disable-next-line:no-shadowed-variable
-        }).then(result => {
-            // tslint:disable-next-line:no-any
-            features = (result as any).features as string[];
+        }).then(promptResult => {
+            /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+            features = (promptResult as any).features as string[];
         });
     // tslint:disable-next-line:cyclomatic-complexity
     }).then(() => {
@@ -52,7 +53,7 @@ export const create = () => {
         const hasJest = features.includes('jest');
 
         mkdirSync(name);
-        spawnSync('npm',['init', '-y'], {
+        spawnSync('npm', ['init', '-y'], {
             cwd: projectDir,
             stdio: 'inherit',
             shell: true,
