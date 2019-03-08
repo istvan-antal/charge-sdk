@@ -1,4 +1,3 @@
-import '../types.d.ts';
 import { resolve, join, dirname } from 'path';
 import { existsSync } from 'fs';
 import webpack from 'webpack';
