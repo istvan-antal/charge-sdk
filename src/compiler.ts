@@ -119,10 +119,12 @@ const wrapEntryPoint = ({ entryPoint, hmr }: { entryPoint: string; hmr?: boolean
     ]
 );
 
-/* eslint complexity: ["error", 10] */
+/* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
+const readCurrentPackageJson = () => require(resolve(process.cwd(), './package.json'));
+
+/* eslint complexity: ["error", 9] */
 export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
-    /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
-    const packageJson = require(resolve(process.cwd(), './package.json'));
+    const packageJson = readCurrentPackageJson();
 
     const appEntryPoint = packageJson.main || './app/index';
     const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
