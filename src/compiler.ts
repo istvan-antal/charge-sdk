@@ -1,5 +1,4 @@
-import { resolve, join, dirname } from 'path';
-import { existsSync } from 'fs';
+import { resolve, dirname } from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -15,28 +14,17 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
     ];
 
     if (!development) {
-        /* plugins.push(
-            new ExtractTextPlugin({
-                filename: `style-${version}.css`,
-            }),
-        ); */
         plugins.push(new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
             filename: '[name].[contenthash:8].css',
             chunkFilename: '[name].[contenthash:8].chunk.css',
         }));
     }
 
-    const projectHasTsConfig = existsSync(
-        resolve(join(process.cwd(), 'tsconfig.json')),
-    );
-
     const config = ({
         mode: development ? 'development' : 'production',
         devtool: !development ? 'source-map' : 'cheap-module-source-map',
         // tslint:disable-next-line:no-any
-        entry: undefined as any,
+        entry: {},
         output: {
             path: resolve(process.cwd(), './dist'),
             filename: `[name]-${version}.js`,
@@ -52,7 +40,6 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                         },
                     },
                 },
-                // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
                 {
                     test: /\.tsx?$/,
                     loader: 'babel-loader',
@@ -96,8 +83,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                     },
                 },
             },
-            occurrenceOrder: true, // To keep filename consistent between
-            // different modes (for example building only)
+            occurrenceOrder: true,
         },
         externals: [
             /* eslint-disable-next-line wrap-iife, func-names */
@@ -120,7 +106,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
     return config;
 };
 
-// tslint:disable-next-line:cyclomatic-complexity
+/* eslint complexity: ["error", 9] */
 export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
     /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
     const packageJson = require(resolve(process.cwd(), './package.json'));
