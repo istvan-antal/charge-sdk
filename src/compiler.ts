@@ -88,8 +88,8 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
             occurrenceOrder: true,
         },
         externals: [
-            /* eslint-disable-next-line wrap-iife, func-names */
-            (function () {
+            /* eslint-disable-next-line wrap-iife */
+            (() => {
                 const IGNORES = [
                     'electron', 'child_process', 'fs',
                 ];
@@ -183,6 +183,5 @@ export const createWebpackConfig = ({ hmr, development, pages }: WebpackConfigCr
 };
 
 export const createCompiler = (options: WebpackConfigCreateParameters = {}) => (
-    // tslint:disable-next-line:max-file-line-count
     webpack(createWebpackConfig(options))
 );
