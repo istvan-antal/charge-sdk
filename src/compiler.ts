@@ -91,8 +91,8 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                 const IGNORES = [
                     'electron', 'child_process', 'fs',
                 ];
-                // tslint:disable-next-line:no-any
-                return (context: any, request: any, callback: any) => {
+                /* eslint '@typescript-eslint/no-explicit-any': 0 */
+                return (_: any, request: any, callback: any) => {
                     if (IGNORES.indexOf(request) >= 0) {
                         // tslint:disable-next-line:no-null-keyword prefer-template
                         return callback(null, `require('${request}')`);

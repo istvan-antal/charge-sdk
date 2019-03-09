@@ -19,7 +19,7 @@ export const create = () => {
         type: 'input',
         validate: value => !!value,
     }).then(async result => {
-        // tslint:disable-next-line:no-any
+        /* eslint '@typescript-eslint/no-explicit-any': 0 */
         name = (result as any).name as string;
 
         return prompt({
@@ -45,7 +45,7 @@ export const create = () => {
             /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
             features = (promptResult as any).features as string[];
         });
-    // tslint:disable-next-line:cyclomatic-complexity
+    /* eslint complexity: ['error', 9], 'no-console': 0 */
     }).then(() => {
         const projectDir = resolve(process.cwd(), name);
         const hasRedux = features.includes('redux');
