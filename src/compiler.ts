@@ -106,6 +106,19 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
     return config;
 };
 
+
+const wrapEntryPoint = ({ entryPoint, hmr }: { entryPoint: string; hmr?: boolean }) => (hmr ?
+    [
+        require.resolve('react-dev-utils/webpackHotDevClient'),
+        '@babel/polyfill',
+        entryPoint,
+    ] :
+    [
+        '@babel/polyfill',
+        entryPoint,
+    ]
+);
+
 /* eslint complexity: ["error", 10] */
 export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
     /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
@@ -130,16 +143,9 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
         }));
     }
 
-    config.entry = hmr ?
-        [
-            require.resolve('react-dev-utils/webpackHotDevClient'),
-            '@babel/polyfill',
-            appEntryPoint,
-        ] :
-        [
-            '@babel/polyfill',
-            appEntryPoint,
-        ];
+    config.entry = {
+        index: wrapEntryPoint({ entryPoint: appEntryPoint, hmr }),
+    };
 
     if (hmr) {
         config.plugins.push(new webpack.HotModuleReplacementPlugin());
