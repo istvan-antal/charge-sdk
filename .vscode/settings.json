@@ -1,5 +1,4 @@
 {
-    "files.eol": "\r\n",
     "typescript.preferences.quoteStyle": "single",
     "eslint.enable": true,
     "eslint.validate": [
