@@ -122,6 +122,11 @@ const wrapEntryPoint = (entryPoint: string, { hmr }: { hmr?: boolean }) => (hmr 
 /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
 const readCurrentPackageJson = () => require(resolve(process.cwd(), './package.json'));
 
+/* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
+const importCompilerMiddleware = (compilerMiddleware: string) => require(
+    resolve(process.cwd(), compilerMiddleware),
+).default;
+
 interface WebpackConfigCreateParameters {
     hmr?: boolean;
     development?: boolean;
@@ -140,8 +145,7 @@ export const createWebpackConfig = ({ hmr, development, pages }: WebpackConfigCr
     const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
     const sdkConfig = packageJson.chargeSdk || packageJson.reactTsRuntime || {};
     const appCompilerMiddleware = sdkConfig.compilerMiddleware &&
-    /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
-        require(resolve(process.cwd(), sdkConfig.compilerMiddleware)).default;
+        importCompilerMiddleware(sdkConfig.compilerMiddleware);
 
     if (sdkConfig.html === undefined) {
         sdkConfig.html = true;
