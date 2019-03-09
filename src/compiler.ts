@@ -4,9 +4,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { createPostCssLoader } from './postcss';
 
+/* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
+const readCurrentPackageJson = () => require(resolve(process.cwd(), './package.json'));
+
 export const createBaseWebpackConfig = ({ development }: { development?: boolean } = {}) => {
-    /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
-    const packageJson = require(resolve(process.cwd(), './package.json'));
+    const packageJson = readCurrentPackageJson();
     const version = process.env.VERSION || packageJson.version;
 
     const plugins = [
@@ -118,9 +120,6 @@ const wrapEntryPoint = (entryPoint: string, { hmr }: { hmr?: boolean }) => (hmr 
         entryPoint,
     ]
 );
-
-/* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
-const readCurrentPackageJson = () => require(resolve(process.cwd(), './package.json'));
 
 /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
 const importCompilerMiddleware = (compilerMiddleware: string) => require(
