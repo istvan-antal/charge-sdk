@@ -107,7 +107,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
 };
 
 
-const wrapEntryPoint = ({ entryPoint, hmr }: { entryPoint: string; hmr?: boolean }) => (hmr ?
+const wrapEntryPoint = (entryPoint: string, { hmr }: { hmr?: boolean }) => (hmr ?
     [
         require.resolve('react-dev-utils/webpackHotDevClient'),
         '@babel/polyfill',
@@ -122,11 +122,21 @@ const wrapEntryPoint = ({ entryPoint, hmr }: { entryPoint: string; hmr?: boolean
 /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
 const readCurrentPackageJson = () => require(resolve(process.cwd(), './package.json'));
 
-/* eslint complexity: ["error", 9] */
-export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
-    const packageJson = readCurrentPackageJson();
+interface WebpackConfigCreateParameters {
+    hmr?: boolean;
+    development?: boolean;
+    pages?: {
+        [key: string]: string;
+    };
+}
 
+/* eslint complexity: ["error", 10] */
+export const createWebpackConfig = ({ hmr, development, pages }: WebpackConfigCreateParameters = {}) => {
+    const packageJson = readCurrentPackageJson();
     const appEntryPoint = packageJson.main || './app/index';
+    const entryPoints: {
+        [key: string]: string;
+    } = pages || { index: appEntryPoint };
     const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
     const sdkConfig = packageJson.chargeSdk || packageJson.reactTsRuntime || {};
     const appCompilerMiddleware = sdkConfig.compilerMiddleware &&
@@ -140,13 +150,22 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
     const config = createBaseWebpackConfig({ development });
 
     if (sdkConfig.html) {
-        config.plugins.push(new HtmlWebpackPlugin({
-            template: appHtmlTemplate,
-        }));
+        config.plugins = [
+            ...config.plugins,
+            ...Object.entries(entryPoints).map(page => new HtmlWebpackPlugin({
+                inject: true,
+                template: appHtmlTemplate,
+                filename: `${page[0]}.html`,
+                chunks: [page[1], 'commons'],
+            })),
+        ];
     }
 
     config.entry = {
-        index: wrapEntryPoint({ entryPoint: appEntryPoint, hmr }),
+        ...Object.entries(entryPoints).reduce((a, b) => ({
+            ...a,
+            [b[0]]: wrapEntryPoint(b[1], { hmr }),
+        }), {}),
     };
 
     if (hmr) {
@@ -160,7 +179,7 @@ export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; devel
     return config;
 };
 
-export const createCompiler = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => (
+export const createCompiler = (options: WebpackConfigCreateParameters = {}) => (
     // tslint:disable-next-line:max-file-line-count
-    webpack(createWebpackConfig({ hmr, development }))
+    webpack(createWebpackConfig(options))
 );
