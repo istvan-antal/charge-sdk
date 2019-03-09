@@ -106,25 +106,25 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
     return config;
 };
 
-/* eslint complexity: ["error", 9] */
+/* eslint complexity: ["error", 10] */
 export const createWebpackConfig = ({ hmr, development }: { hmr?: boolean; development?: boolean } = {}) => {
     /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
     const packageJson = require(resolve(process.cwd(), './package.json'));
 
     const appEntryPoint = packageJson.main || './app/index';
     const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
-    const reactTsRuntimeConfig = packageJson.reactTsRuntime || {};
-    const appCompilerMiddleware = reactTsRuntimeConfig.compilerMiddleware &&
+    const sdkConfig = packageJson.chargeSdk || packageJson.reactTsRuntime || {};
+    const appCompilerMiddleware = sdkConfig.compilerMiddleware &&
     /* eslint-disable-next-line @typescript-eslint/no-var-requires, global-require, import/no-dynamic-require */
-        require(resolve(process.cwd(), reactTsRuntimeConfig.compilerMiddleware)).default;
+        require(resolve(process.cwd(), sdkConfig.compilerMiddleware)).default;
 
-    if (reactTsRuntimeConfig.html === undefined) {
-        reactTsRuntimeConfig.html = true;
+    if (sdkConfig.html === undefined) {
+        sdkConfig.html = true;
     }
 
     const config = createBaseWebpackConfig({ development });
 
-    if (reactTsRuntimeConfig.html) {
+    if (sdkConfig.html) {
         config.plugins.push(new HtmlWebpackPlugin({
             template: appHtmlTemplate,
         }));
