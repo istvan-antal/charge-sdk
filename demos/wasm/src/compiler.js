@@ -3,7 +3,7 @@ module.exports.default = (config) => ({
     module: {
         ...config.module,
         rules: [
-            ...config.rules,
+            ...config.module.rules,
             {
                 test: /\.(c|cpp)$/,
                 use: {
