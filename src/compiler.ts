@@ -158,7 +158,7 @@ export const createWebpackConfig = ({ hmr, development, pages }: WebpackConfigCr
                 inject: true,
                 template: appHtmlTemplate,
                 filename: `${page[0]}.html`,
-                chunks: [page[1], 'commons'],
+                chunks: [page[0], 'commons'],
             })),
         ];
     }
