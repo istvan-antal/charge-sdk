@@ -166,7 +166,7 @@ export const createWebpackConfig = ({ hmr, development, pages }: WebpackConfigCr
     config.entry = {
         ...Object.entries(entryPoints).reduce((a, b) => ({
             ...a,
-            [b[0]]: wrapEntryPoint(b[0], { hmr }),
+            [b[0]]: wrapEntryPoint(b[1], { hmr }),
         }), {}),
     };
 
