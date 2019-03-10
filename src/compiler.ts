@@ -33,15 +33,6 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
         module: {
             rules: [
                 {
-                    test: /\.(c|cpp)$/,
-                    use: {
-                        loader: 'cpp-wasm-loader',
-                        options: {
-                            asmJs: true,
-                        },
-                    },
-                },
-                {
                     test: /\.tsx?$/,
                     loader: 'babel-loader',
                 },
