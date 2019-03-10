@@ -1,4 +1,4 @@
-module.exports.default = (config) => ({
+module.exports.default = config => ({
     ...config,
     module: {
         ...config.module,
