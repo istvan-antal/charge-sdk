@@ -13,7 +13,7 @@ properties([
 ])
 
 def demos = [
-    'single-page-react', 'server-side-rendering', 'redux-typescript', 'wasm'
+    'single-page-react', 'server-side-rendering', 'redux-typescript',
 ];
 
 node('nodejs') {
@@ -39,11 +39,7 @@ node('nodejs') {
             stage("build demos/${v}") {
                 dir("demos/${v}") {
                     sh 'npm install'
-                    if (v == "wasm") {
-                        sh 'source ~/emsdk/emsdk_env.sh; npm run build'
-                    } else {
-                        sh 'npm run build'
-                    }
+                    sh 'npm run build'
                 }
             }
         }
