@@ -128,11 +128,11 @@ interface WebpackConfigCreateParameters {
 export const createWebpackConfig = ({ hmr, development, pages }: WebpackConfigCreateParameters = {}) => {
     const packageJson = readCurrentPackageJson();
     const appEntryPoint = packageJson.main || './src/index';
+    const sdkConfig = packageJson.chargeSdk || {};
     const entryPoints: {
         [key: string]: string;
-    } = pages || { index: appEntryPoint };
+    } = pages || sdkConfig.pages || { index: appEntryPoint };
     const appHtmlTemplate = `${dirname(appEntryPoint)}/index.html`;
-    const sdkConfig = packageJson.chargeSdk || {};
     const appCompilerMiddleware = sdkConfig.compilerMiddleware &&
         importCompilerMiddleware(sdkConfig.compilerMiddleware);
 
