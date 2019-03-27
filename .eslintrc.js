@@ -41,13 +41,11 @@ module.exports = {
     rules: {
         'max-len': ['error', 120],
         'max-lines': ['error', 200],
-        complexity: ['error', 7],
         indent: ['error', 4],
         'operator-linebreak': ["error", "after"],
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
         'function-paren-newline': 0,
-        '@typescript-eslint/no-explicit-any': 'error',
         'react/jsx-filename-extension': ['error', {
             "extensions": [".tsx", ".jsx"]
         }],
@@ -90,7 +88,6 @@ module.exports = {
         'lines-between-class-members': ['error', 'never'],
         'arrow-parens': ['error', 'as-needed'],
         '@typescript-eslint/array-type': ['error', 'array-simple'],
-        '@typescript-eslint/no-unused-vars': ['error'],
         "no-restricted-syntax": [
             "error",
             {
@@ -114,6 +111,7 @@ module.exports = {
         '@typescript-eslint/explicit-function-return-type': 0,
         '@typescript-eslint/no-non-null-assertion': 0,
         '@typescript-eslint/no-object-literal-type-assertion': 0,
+        '@typescript-eslint/no-use-before-define': 0,
         'import/prefer-default-export': 0,
     },
 };
