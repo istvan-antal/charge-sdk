@@ -5,9 +5,9 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "babel-node --extensions \".ts\" ./src/cli.ts test",
-    "build": "tsc --declaration",
-    "release": "babel-node --extensions \".ts\" ./src/release.ts",
+    "test": "bash -c \"babel-node --extensions '.ts' ./src/cli.ts test\"",
+    "build": "bash -c \"tsc --declaration\"",
+    "release": "bash -c \"babel-node --extensions '.ts' ./src/release.ts\"",
     "prepare": "npm run build"
   },
   "engines": {
