@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "drKnoxy.eslint-disable-snippets",
+        "eg2.tslint",
+        "mrmlnc.vscode-scss",
+        "istvan-antal.react-typescript-snippets"
+    ]
+}
