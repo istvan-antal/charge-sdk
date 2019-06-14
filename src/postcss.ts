@@ -1,4 +1,3 @@
-import autoprefixer from 'autoprefixer';
 import postcssSimpleVars from 'postcss-simple-vars';
 import postcssImport from 'postcss-import';
 import postcssNested from 'postcss-nested';
@@ -25,15 +24,6 @@ const postCssOptions = {
         // require('postcss-flexbugs-fixes'),
         (postcssSimpleVars as any)(),
         postcssNested(),
-        autoprefixer({
-            browsers: [
-                '>1%',
-                'last 4 versions',
-                'Firefox ESR',
-                'not ie < 9', // React doesn't support IE8 anyway
-            ],
-            flexbox: 'no-2009',
-        }),
     ],
 };
 

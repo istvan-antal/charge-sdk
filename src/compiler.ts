@@ -102,11 +102,9 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
 const wrapEntryPoint = (entryPoint: string, { hmr }: { hmr?: boolean }) => (hmr ?
     [
         require.resolve('react-dev-utils/webpackHotDevClient'),
-        '@babel/polyfill',
         entryPoint,
     ] :
     [
-        '@babel/polyfill',
         entryPoint,
     ]
 );
