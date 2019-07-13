@@ -54,7 +54,8 @@ module.exports = {
                 'static-methods',
                 'everything-else',
                 'lifecycle',
-                'render'
+                'render',
+                'destruct'
             ],
             groups: {
                 lifecycle: [
@@ -79,8 +80,10 @@ module.exports = {
                     'UNSAFE_componentWillUpdate',
                     'getSnapshotBeforeUpdate',
                     'componentDidUpdate',
+                ],
+                destruct: [
                     'componentDidCatch',
-                    'componentWillUnmount'
+                    'componentWillUnmount',
                 ]
             },
         }],
