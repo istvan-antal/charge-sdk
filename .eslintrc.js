@@ -90,7 +90,7 @@ module.exports = {
         'eol-last': ['error', 'never'],
         'lines-between-class-members': ['error', 'never'],
         'arrow-parens': ['error', 'as-needed'],
-        '@typescript-eslint/array-type': ['error', 'array-simple'],
+        'array-type': ['error', { default: 'array-simple' }],
         "no-restricted-syntax": [
             "error",
             {
