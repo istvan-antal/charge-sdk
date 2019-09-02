@@ -131,29 +131,6 @@ export const jestConfig = {
     collectCoverageFrom: [
         'src/**/*.{js,jsx,ts,tsx}',
     ],
-    browserslist: [
-        "last 1 chrome version"
-    ],
-    babel: {
-        "presets": [
-            "@babel/preset-env",
-            "@babel/preset-react",
-            "@babel/preset-typescript"
-        ],
-        "plugins": [
-            "@babel/plugin-proposal-object-rest-spread",
-            "@babel/plugin-proposal-export-default-from",
-            "@babel/plugin-transform-react-jsx",
-            [
-                "@babel/plugin-proposal-class-properties",
-                {
-                    "loose": false
-                }
-            ],
-            "@babel/plugin-transform-modules-commonjs",
-            "@babel/plugin-syntax-dynamic-import"
-        ]
-    },
     coverageDirectory: 'report',
     coverageReporters: [
         'json',

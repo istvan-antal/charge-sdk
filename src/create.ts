@@ -65,6 +65,31 @@ export const create = () => {
         packageJson.scripts.start = 'charge-sdk run';
         packageJson.scripts.build = 'charge-sdk build';
 
+        packageJson.browserslist = [
+            'last 1 chrome version'
+        ];
+
+        packageJson.babel = {
+            presets: [
+                '@babel/preset-env',
+                '@babel/preset-react',
+                '@babel/preset-typescript'
+            ],
+            plugins: [
+                '@babel/plugin-proposal-object-rest-spread',
+                '@babel/plugin-proposal-export-default-from',
+                '@babel/plugin-transform-react-jsx',
+                [
+                    '@babel/plugin-proposal-class-properties',
+                    {
+                        loose: false
+                    }
+                ],
+                '@babel/plugin-transform-modules-commonjs',
+                '@babel/plugin-syntax-dynamic-import'
+            ]
+        };
+
         if (hasTslint) {
             packageJson.scripts.test = 'charge-sdk test';
         }
