@@ -16,20 +16,15 @@ import App from './App';
 
 render(<App />, document.getElementById('app'));`;
 
-export const reduxIndexTsxTemplate = `import * as React from 'react';
+export const reduxIndexTsxTemplate = `import React from 'react';
 import { render } from 'react-dom';
-import App from './App';
-import { Provider } from 'react-redux';
-import store from './store';
-
-// Replace this with actual actions union
-// tslint:disable-next-line:no-any
-type Actions = any;
-import { connect } from 'react-redux';
-import { State } from './store';
+import { Provider, connect } from 'react-redux';
 import { Dispatch, bindActionCreators } from 'redux';
+import App from './App';
+import store, { State } from './store';
+
 const ConnectedApp = connect((state: State) => ({
-}), (dispatch: Dispatch<Actions>) => bindActionCreators({
+}), (dispatch: Dispatch) => bindActionCreators({
 }, dispatch))(App);
 
 render(
@@ -52,24 +47,23 @@ export const indexHtmlTemplate = `<!DOCTYPE html>
 </body>
 </html>`;
 
-export const actionsIndexTsx = `export interface Action<T extends string> {
-    type: T;
-}
+export const actionsIndexTsx = `import { Action } from 'redux';
 
 export interface ActionWithData<T extends string, P> extends Action<T> {
-    data: P;
+    payload: P;
 }
 
-// tslint:disable:only-arrow-functions
+/* eslint import/export: 0 */
+
 export function createAction<T extends string>(type: T): Action<T>;
-export function createAction<T extends string, P>(type: T, data: P): ActionWithData<T, P>;
-export function createAction<T extends string, P>(type: T, data?: P) {
-    return data === undefined ? { type } : ({ type, data });
+export function createAction<T extends string, P>(type: T, payload: P): ActionWithData<T, P>;
+export function createAction<T extends string, P>(type: T, payload?: P) {
+    return payload === undefined ? { type } : ({ type, payload });
 }
 
 // tslint:disable-next-line:no-any
 type FunctionType = (...args: any[]) => any;
-interface ActionCreatorMapObject { [actionCreator: string]: FunctionType; }
+interface ActionCreatorMapObject { [actionCreator: string]: FunctionType }
 export type ActionsUnion<A extends ActionCreatorMapObject> = ReturnType<A[keyof A]>;
 
 // Example actions/counter.ts
@@ -137,6 +131,29 @@ export const jestConfig = {
     collectCoverageFrom: [
         'src/**/*.{js,jsx,ts,tsx}',
     ],
+    browserslist: [
+        "last 1 chrome version"
+    ],
+    babel: {
+        "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react",
+            "@babel/preset-typescript"
+        ],
+        "plugins": [
+            "@babel/plugin-proposal-object-rest-spread",
+            "@babel/plugin-proposal-export-default-from",
+            "@babel/plugin-transform-react-jsx",
+            [
+                "@babel/plugin-proposal-class-properties",
+                {
+                    "loose": false
+                }
+            ],
+            "@babel/plugin-transform-modules-commonjs",
+            "@babel/plugin-syntax-dynamic-import"
+        ]
+    },
     coverageDirectory: 'report',
     coverageReporters: [
         'json',
