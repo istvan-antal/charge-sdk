@@ -105,6 +105,13 @@ export default combineReducers({
     // counter,
 });`;
 
+export const grahqlClientTs = `import { combineReducers } from 'redux';
+// import { counter } from './counter';
+
+export default combineReducers({
+    // counter,
+});`;
+
 export const storeIndexTsx = `import { createStore } from 'redux';
 import reducers from '../reducers';
 

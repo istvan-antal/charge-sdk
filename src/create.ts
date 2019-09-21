@@ -39,6 +39,10 @@ export const create = () => {
                     value: 'redux',
                     name: 'Redux',
                 },
+                {
+                    value: 'graphql',
+                    name: 'GraphQL',
+                },
             ],
         // tslint:disable-next-line:no-shadowed-variable
         }).then(promptResult => {
@@ -51,6 +55,7 @@ export const create = () => {
         const hasRedux = features.includes('redux');
         const hasTslint = features.includes('tslint');
         const hasJest = features.includes('jest');
+        const hasGraphql = features.includes('graphql');
 
         mkdirSync(name);
         spawnSync('npm', ['init', '-y'], {
@@ -109,6 +114,20 @@ export const create = () => {
 
         if (hasRedux) {
             spawnSync('npm', ['install', 'redux', 'react-redux', '@types/react-redux'], {
+                cwd: projectDir,
+                stdio: 'inherit',
+                shell: true,
+            });
+        }
+
+        if (hasGraphql) {
+            spawnSync('npm', [
+                'install', 'apollo-client', 'graphql',
+                'graphql-tag', '@types/graphql',
+                'react-apollo', 'apollo-utilities',
+                'apollo-cache-inmemory',
+                'react-apollo',
+            ], {
                 cwd: projectDir,
                 stdio: 'inherit',
                 shell: true,
