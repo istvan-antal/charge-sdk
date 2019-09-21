@@ -49,7 +49,7 @@ export const create = () => {
             /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
             features = (promptResult as any).features as string[];
         });
-    /* eslint complexity: ['error', 9], 'no-console': 0 */
+    /* eslint complexity: ['error', 10], 'no-console': 0 */
     }).then(() => {
         const projectDir = resolve(process.cwd(), name);
         const hasRedux = features.includes('redux');
@@ -71,14 +71,14 @@ export const create = () => {
         packageJson.scripts.build = 'charge-sdk build';
 
         packageJson.browserslist = [
-            'last 1 chrome version'
+            'last 1 chrome version',
         ];
 
         packageJson.babel = {
             presets: [
                 '@babel/preset-env',
                 '@babel/preset-react',
-                '@babel/preset-typescript'
+                '@babel/preset-typescript',
             ],
             plugins: [
                 '@babel/plugin-proposal-object-rest-spread',
@@ -87,12 +87,12 @@ export const create = () => {
                 [
                     '@babel/plugin-proposal-class-properties',
                     {
-                        loose: false
-                    }
+                        loose: false,
+                    },
                 ],
                 '@babel/plugin-transform-modules-commonjs',
-                '@babel/plugin-syntax-dynamic-import'
-            ]
+                '@babel/plugin-syntax-dynamic-import',
+            ],
         };
 
         if (hasTslint) {

@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "bash -c \"babel-node --extensions '.ts' ./src/cli.ts test\"",
+    "test": "tsc --noEmit && eslint --ext ts,tsx --quiet ./src && bash -c \"babel-node --extensions '.ts' ./src/cli.ts test\"",
     "build": "bash -c \"tsc --declaration\"",
     "release": "bash -c \"babel-node --extensions '.ts' ./src/release.ts\"",
     "prepare": "npm run build"
