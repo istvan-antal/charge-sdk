@@ -39,7 +39,7 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                 {
                     test: /\.mjs$/,
                     include: /node_modules/,
-                    type: 'javascript/auto'
+                    type: 'javascript/auto',
                 },
                 // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
                 { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
