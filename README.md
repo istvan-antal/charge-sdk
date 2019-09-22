@@ -2,6 +2,12 @@
 
 React TS Runtime is a package that contains all the tooling you need to build your React project written in TypeScript.
 
+# Usage
+
+```
+npx charge-sdk create
+```
+
 # Setup
 
 ```bash
