@@ -110,6 +110,8 @@ module.exports = {
         ],
         'object-curly-newline': 0,
         'no-continue': 0,
+        'no-plusplus': 0,
+        'no-underscore-dangle': 0,
         '@typescript-eslint/indent': 0,
         '@typescript-eslint/explicit-member-accessibility': 0,
         '@typescript-eslint/no-empty-interface': 0,
@@ -118,6 +120,10 @@ module.exports = {
         '@typescript-eslint/no-object-literal-type-assertion': 0,
         '@typescript-eslint/no-use-before-define': 0,
         'import/prefer-default-export': 0,
+        'react/jsx-props-no-spreading': 0,
+        'react/state-in-constructor': 0,
+        'react/style-prop-object': 0,
+        'react/static-property-placement': 0,
         'react/jsx-props-no-spreading': 0,
         'react/state-in-constructor': 0,
         'no-await-in-loop': 0,
@@ -133,7 +139,6 @@ module.exports = {
             exceptAfterSingleLine: true
         }],
         'no-multiple-empty-lines': ['error', { max: 1 }],
-        'react/jsx-props-no-spreading': 0,
-        'react/state-in-constructor': 0,
+        'max-classes-per-file': 0,
     },
 };
