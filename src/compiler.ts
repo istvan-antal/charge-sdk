@@ -103,7 +103,6 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
     return config;
 };
 
-
 const wrapEntryPoint = (entryPoint: string, { hmr }: { hmr?: boolean }) => (hmr ?
     [
         require.resolve('react-dev-utils/webpackHotDevClient'),

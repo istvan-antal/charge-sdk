@@ -118,5 +118,22 @@ module.exports = {
         '@typescript-eslint/no-object-literal-type-assertion': 0,
         '@typescript-eslint/no-use-before-define': 0,
         'import/prefer-default-export': 0,
+        'react/jsx-props-no-spreading': 0,
+        'react/state-in-constructor': 0,
+        'no-await-in-loop': 0,
+
+        'padded-blocks': ["error", {
+            "blocks": "never"
+        }],
+
+        'jsx-a11y/label-has-for': 0,
+        'jsx-a11y/label-has-associated-control': ['error', { assert: "either" }],
+
+        'lines-between-class-members': ["error", "always", {
+            exceptAfterSingleLine: true
+        }],
+        'no-multiple-empty-lines': ['error', { max: 1 }],
+        'react/jsx-props-no-spreading': 0,
+        'react/state-in-constructor': 0,
     },
 };
