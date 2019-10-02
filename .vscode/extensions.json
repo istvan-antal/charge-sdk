@@ -2,7 +2,7 @@
     "recommendations": [
         "dbaeumer.vscode-eslint",
         "drKnoxy.eslint-disable-snippets",
-        "eg2.tslint",
+        "ms-vscode.vscode-typescript-tslint-plugin",
         "mrmlnc.vscode-scss",
         "istvan-antal.react-typescript-snippets"
     ]
