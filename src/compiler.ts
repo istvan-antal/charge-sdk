@@ -1,3 +1,4 @@
+/* eslint max-lines: ["error", 250] */
 import { resolve, dirname } from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -35,6 +36,29 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                 {
                     test: /\.tsx?$/,
                     loader: 'babel-loader',
+                    options: {
+                        babel: {
+                            presets: [
+                                '@babel/preset-env',
+                                '@babel/preset-react',
+                                '@babel/preset-typescript',
+                            ],
+                            plugins: [
+                                '@babel/plugin-proposal-object-rest-spread',
+                                '@babel/plugin-proposal-export-default-from',
+                                '@babel/plugin-transform-react-jsx',
+                                [
+                                    '@babel/plugin-proposal-class-properties',
+                                    {
+                                        loose: false,
+                                    },
+                                ],
+                                '@babel/plugin-transform-modules-commonjs',
+                                '@babel/plugin-syntax-dynamic-import',
+                                '@babel/plugin-proposal-numeric-separator',
+                            ],
+                        },
+                    },
                 },
                 {
                     test: /\.mjs$/,
@@ -126,7 +150,7 @@ interface WebpackConfigCreateParameters {
     };
 }
 
-/* eslint complexity: ["error", 10] */
+/* eslint complexity: ['error', 10] */
 export const createWebpackConfig = ({ hmr, development, pages }: WebpackConfigCreateParameters = {}) => {
     const packageJson = readCurrentPackageJson();
     const appEntryPoint = packageJson.main || './src/index';
