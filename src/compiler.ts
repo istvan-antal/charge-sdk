@@ -37,27 +37,25 @@ export const createBaseWebpackConfig = ({ development }: { development?: boolean
                     test: /\.tsx?$/,
                     loader: 'babel-loader',
                     options: {
-                        babel: {
-                            presets: [
-                                '@babel/preset-env',
-                                '@babel/preset-react',
-                                '@babel/preset-typescript',
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-react',
+                            '@babel/preset-typescript',
+                        ],
+                        plugins: [
+                            '@babel/plugin-proposal-object-rest-spread',
+                            '@babel/plugin-proposal-export-default-from',
+                            '@babel/plugin-transform-react-jsx',
+                            [
+                                '@babel/plugin-proposal-class-properties',
+                                {
+                                    loose: false,
+                                },
                             ],
-                            plugins: [
-                                '@babel/plugin-proposal-object-rest-spread',
-                                '@babel/plugin-proposal-export-default-from',
-                                '@babel/plugin-transform-react-jsx',
-                                [
-                                    '@babel/plugin-proposal-class-properties',
-                                    {
-                                        loose: false,
-                                    },
-                                ],
-                                '@babel/plugin-transform-modules-commonjs',
-                                '@babel/plugin-syntax-dynamic-import',
-                                '@babel/plugin-proposal-numeric-separator',
-                            ],
-                        },
+                            '@babel/plugin-transform-modules-commonjs',
+                            '@babel/plugin-syntax-dynamic-import',
+                            '@babel/plugin-proposal-numeric-separator',
+                        ],
                     },
                 },
                 {
