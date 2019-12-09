@@ -42,6 +42,7 @@ module.exports = {
         'max-len': ['error', 120],
         'max-lines': ['error', 200],
         indent: ['error', 4],
+        'import/extensions': 0,
         'operator-linebreak': ["error", "after"],
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
