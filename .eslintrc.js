@@ -140,5 +140,6 @@ module.exports = {
         }],
         'no-multiple-empty-lines': ['error', { max: 1 }],
         'max-classes-per-file': 0,
+        'import/extensions': 0,
     },
 };
