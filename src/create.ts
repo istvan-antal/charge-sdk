@@ -17,8 +17,8 @@ export const create = () => {
     prompt({
         name: 'name',
         type: 'input',
-        validate: value => !!value,
-    }).then(async result => {
+        validate: (value: any) => !!value,
+    }).then(async (result: any) => {
         /* eslint '@typescript-eslint/no-explicit-any': 0 */
         name = (result as any).name as string;
 
@@ -45,7 +45,7 @@ export const create = () => {
                 },
             ],
         // tslint:disable-next-line:no-shadowed-variable
-        }).then(promptResult => {
+        }).then((promptResult: any) => {
             /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
             features = (promptResult as any).features as string[];
         });
@@ -153,7 +153,7 @@ export const create = () => {
 
         console.log('Project created, run the following command to get started!');
         console.log(`cd ${name}; npm start`);
-    }).catch(error => {
+    }).catch((error: Error) => {
         console.error(error);
         throw error;
     });
