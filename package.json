@@ -3,7 +3,6 @@
   "version": "2.0.0-alpha.3",
   "description": "Build, run and test tools for React projects written in TypeScript.",
   "module": "./dist/index.js",
-  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "tsc --noEmit && eslint --ext ts,tsx --quiet ./src && bash -c \"babel-node --extensions '.ts' ./src/cli.ts test\"",
