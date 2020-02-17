@@ -1,11 +1,12 @@
 import chalk from 'chalk';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import {
-    prepareUrls,
-} from 'react-dev-utils/WebpackDevServerUtils';
-
 import { createWebpackConfig } from './compiler';
+
+const {
+    prepareUrls,
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+} = require('react-dev-utils/WebpackDevServerUtils');
 
 const port = process.env.PORT || '3000';
 const host = '0.0.0.0';
