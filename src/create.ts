@@ -1,3 +1,4 @@
+import { prompt } from 'inquirer';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { spawnSync } from 'child_process';
 import { resolve } from 'path';
@@ -9,9 +10,6 @@ import {
     exampleTest,
 } from './templates';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { prompt } = require('inquirer');
-
 /* eslint-disable import/prefer-default-export */
 export const create = () => {
     let name: string;
@@ -19,8 +17,8 @@ export const create = () => {
     prompt({
         name: 'name',
         type: 'input',
-        validate: (value: any) => !!value,
-    }).then(async (result: any) => {
+        validate: value => !!value,
+    }).then(async result => {
         /* eslint '@typescript-eslint/no-explicit-any': 0 */
         name = (result as any).name as string;
 
@@ -47,7 +45,7 @@ export const create = () => {
                 },
             ],
         // tslint:disable-next-line:no-shadowed-variable
-        }).then((promptResult: any) => {
+        }).then(promptResult => {
             /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
             features = (promptResult as any).features as string[];
         });
@@ -155,7 +153,7 @@ export const create = () => {
 
         console.log('Project created, run the following command to get started!');
         console.log(`cd ${name}; npm start`);
-    }).catch((error: Error) => {
+    }).catch(error => {
         console.error(error);
         throw error;
     });
