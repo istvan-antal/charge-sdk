@@ -1,6 +1,6 @@
 {
   "name": "charge-sdk",
-  "version": "2.0.0-alpha.5",
+  "version": "2.0.0-alpha.6",
   "description": "Build, run and test tools for React projects written in TypeScript.",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
