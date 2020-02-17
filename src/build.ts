@@ -1,6 +1,8 @@
 import chalk from 'chalk';
-import formatWebpackMessages from 'react-dev-utils/formatWebpackMessages';
 import { createCompiler } from './compiler';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 
 /* eslint-disable import/prefer-default-export, no-console */
 export const build = () => {
