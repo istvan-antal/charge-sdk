@@ -17,5 +17,6 @@ declare module 'react-dev-utils/formatWebpackMessages';
 declare module 'react-dev-utils/WebpackDevServerUtils';
 declare module 'read-cache';
 declare module 'source-map';
+declare module 'postcss';
 declare module 'webpack';
 declare module 'webpack-dev-server';

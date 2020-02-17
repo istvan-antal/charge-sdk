@@ -1,8 +1,10 @@
-import postcssSimpleVars from 'postcss-simple-vars';
-import postcssImport from 'postcss-import';
-import postcssNested from 'postcss-nested';
+/* eslint-disable @typescript-eslint/no-var-requires */
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import readCache from 'read-cache';
+
+const postcssSimpleVars = require('postcss-simple-vars');
+const postcssImport = require('postcss-import');
+const postcssNested = require('postcss-nested');
 
 const load = (filename: string) => readCache(filename, 'utf-8');
 

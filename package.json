@@ -7,7 +7,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "tsc --noEmit && eslint --ext ts,tsx --quiet ./src && bash -c \"babel-node --extensions '.ts' ./src/cli.ts test\"",
-    "build": "bash -c \"tsc --declaration --types node\"",
+    "build": "bash -c \"tsc --declaration --module esnext --target esnext --types node\"",
     "releasePremajor": "npm version premajor --preid=alpha -m \"[Release] %s\" && npm publish && git push --tags && git push",
     "releaseMajor": "npm version major -m \"[Release] %s\" && npm publish && git push --tags && git push",
     "releaseMinor": "npm version minor -m \"[Release] %s\" && npm publish && git push --tags && git push",
