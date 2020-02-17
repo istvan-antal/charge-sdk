@@ -1,4 +1,3 @@
-import { prompt } from 'inquirer';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { spawnSync } from 'child_process';
 import { resolve } from 'path';
@@ -9,6 +8,9 @@ import {
     jestConfig,
     exampleTest,
 } from './templates';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { prompt } = require('inquirer');
 
 /* eslint-disable import/prefer-default-export */
 export const create = () => {
