@@ -7,11 +7,8 @@
   "scripts": {
     "test": "tsc --noEmit && eslint --ext ts,tsx --quiet ./src && bash -c \"babel-node --extensions '.ts' ./src/cli.ts test\"",
     "build": "bash -c \"tsc --declaration\"",
-    "releaseMajor": "npm version major -m \"[Release] %s\" && npm publish && git push --tags && git push",
-    "releaseMinor": "npm version minor -m \"[Release] %s\" && npm publish && git push --tags && git push",
-    "releasePatch": "npm version patch -m \"[Release] %s\" && npm publish && git push --tags && git push",
-    "releaseAlpha": "npm version prerelease --preid=alpha -m \"[Release] %s\" && npm publish && git push --tags && git push",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "postversion": "git push --tags && git push"
   },
   "engines": {
     "node": "13.7.0",
