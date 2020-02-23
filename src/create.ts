@@ -25,7 +25,7 @@ export const create = () => {
         return prompt({
             name: 'features',
             type: 'checkbox',
-            default: ['tslint'],
+            default: ['jest'],
             choices: [
                 {
                     value: 'tslint',
