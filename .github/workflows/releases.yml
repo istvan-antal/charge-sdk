@@ -31,7 +31,7 @@ jobs:
           prerelease: false
 
   publish-npm:
-    needs: build
+    needs: create-release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -45,7 +45,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
   publish-gpr:
-    needs: build
+    needs: create-release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
