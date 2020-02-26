@@ -2,6 +2,7 @@ import postcssSimpleVars from 'postcss-simple-vars';
 import postcssImport from 'postcss-import';
 import postcssNested from 'postcss-nested';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import postcssHexRgba from 'postcss-hexrgba';
 import readCache from 'read-cache';
 
 const load = (filename: string) => readCache(filename, 'utf-8');
@@ -24,6 +25,7 @@ const postCssOptions = {
         // require('postcss-flexbugs-fixes'),
         (postcssSimpleVars as any)(),
         postcssNested(),
+        postcssHexRgba(),
     ],
 };
 
