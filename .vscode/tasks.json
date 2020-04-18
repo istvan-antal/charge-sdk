@@ -1,0 +1,25 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "[Charge SDK] Release *.b.c",
+            "command": "npm version major",
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "[Charge SDK] Release a.*.c",
+            "command": "npm version minor",
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "[Charge SDK] Release a.b.*",
+            "command": "npm version patch",
+            "problemMatcher": []
+        }
+    ]
+}
