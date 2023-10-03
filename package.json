@@ -82,7 +82,7 @@
     "inquirer": "^7.1.0",
     "jest": "^25.3.0",
     "mini-css-extract-plugin": "^0.9.0",
-    "postcss": "^7.0.27",
+    "postcss": "^8.4.31",
     "postcss-hexrgba": "^2.0.0",
     "postcss-import": "^12.0.1",
     "postcss-initial": "^3.0.2",
